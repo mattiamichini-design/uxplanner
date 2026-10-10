@@ -37,7 +37,7 @@
     "@dnd-kit/sortable": "10.0.0",
     "@dnd-kit/utilities": "3.2.2",
     "@lisse/core": "0.7.2",
-    "@modelcontextprotocol/ext-apps": "^1.7.5",
+    "@modelcontextprotocol/ext-apps": "^2.0.3",
     "@modelcontextprotocol/sdk": "^1.32.0",
     "@radix-ui/react-alert-dialog": "1.1.23",
     "@radix-ui/react-checkbox": "1.3.11",
