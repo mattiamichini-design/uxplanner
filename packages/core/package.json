@@ -29,7 +29,7 @@
     "test": "tsc -p tsconfig.test.json && node --test dist-test/tests/*.test.js"
   },
   "devDependencies": {
-    "@types/node": "^24.6.0",
+    "@types/node": "^26.6.4",
     "typescript": "^5.9.3"
   }
 }
