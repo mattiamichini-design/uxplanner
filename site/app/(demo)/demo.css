@@ -1,0 +1,58 @@
+/* Chrome that exists only in the demo: the "changes stay in this browser" notes and loading/error states.
+   Colours, radius and type roles are the shared --ux-* roles on :root (src/styles/tokens.css); the rest is local. */
+.demo-note {
+  display: grid;
+  gap: 2px;
+  margin: 12px 4px 0;
+  padding: 10px 12px;
+  border: 1px dashed var(--ux-input);
+  border-radius: var(--ux-radius-control);
+  background: var(--ux-surface);
+  color: var(--ux-muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+.demo-note strong { color: var(--ux-text); font-weight: 600; }
+
+/* Where the sidebar is not visible (below the lg breakpoint) the same note stays on screen as a small pill. */
+.demo-pill {
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: var(--z-ux-sticky);
+  width: max-content;
+  max-width: calc(100% - 32px);
+  margin-inline: auto;
+  padding: 1px 10px;
+  border: 1px solid var(--ux-border);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--ux-surface) 92%, transparent);
+  color: var(--ux-muted);
+  font-size: 12px;
+  line-height: 1.5;
+  pointer-events: none;
+}
+@media (min-width: 64rem) { .demo-pill { display: none; } }
+
+/* Opened as a page rather than inside the landing's dialog. */
+.demo-standalone {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px 16px;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--ux-border);
+  background: var(--ux-surface);
+  color: var(--ux-muted);
+  font-size: var(--ux-text-label);
+  line-height: 1.4;
+}
+.demo-standalone a { color: var(--ux-text); font-weight: 500; }
+.demo-noscript { padding: 24px; font-size: 15px; }
+.demo-noscript a { text-decoration: underline; }
+
+.demo-loading { display: grid; min-height: 100dvh; place-items: center; color: var(--ux-muted); font-size: 14px; }
+.demo-error { display: grid; gap: 12px; max-width: 40rem; margin: 0 auto; padding: 64px 24px; text-align: center; }
+.demo-error h1 { font-size: 22px; font-weight: 600; }
+.demo-error button { justify-self: center; padding: 8px 16px; border: 1px solid var(--ux-border); border-radius: var(--ux-radius-control); background: var(--ux-surface); }

@@ -1,0 +1,160 @@
+{
+  "title": "Getting help · Persona 2",
+  "meta": {
+    "persona": "Persona 2",
+    "journeyType": "support",
+    "updatedAt": "2026-10-01T00:00:00.000Z",
+    "summary": "Sample journey for the UX Planner demo."
+  },
+  "columns": [
+    {
+      "id": "notice",
+      "label": "Notice",
+      "subtitle": "Something goes wrong"
+    },
+    {
+      "id": "search",
+      "label": "Search",
+      "subtitle": "Looking for an answer"
+    },
+    {
+      "id": "resolve",
+      "label": "Resolve",
+      "subtitle": "Getting back on track"
+    }
+  ],
+  "rows": [
+    {
+      "id": "actions",
+      "label": "User actions",
+      "description": "What the persona does",
+      "cells": [
+        {
+          "columnId": "notice",
+          "items": [
+            {
+              "text": "Notices that a result looks wrong."
+            }
+          ]
+        },
+        {
+          "columnId": "search",
+          "items": [
+            {
+              "text": "Searches the help pages for the exact case."
+            }
+          ]
+        },
+        {
+          "columnId": "resolve",
+          "items": [
+            {
+              "text": "Contacts support with details."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "goals",
+      "label": "Goals",
+      "description": "What they want to achieve",
+      "cells": [
+        {
+          "columnId": "notice",
+          "items": [
+            {
+              "text": "Spot the problem early."
+            }
+          ]
+        },
+        {
+          "columnId": "search",
+          "items": [
+            {
+              "text": "Get a precise answer."
+            }
+          ]
+        },
+        {
+          "columnId": "resolve",
+          "items": [
+            {
+              "text": "Know when it will be solved."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pain-points",
+      "label": "Pain points",
+      "description": "What gets in the way",
+      "cells": [
+        {
+          "columnId": "notice",
+          "items": [
+            {
+              "text": "Problems are noticed late.",
+              "emphasis": "negative"
+            }
+          ]
+        },
+        {
+          "columnId": "search",
+          "items": [
+            {
+              "text": "Generic answers that do not fit.",
+              "emphasis": "negative"
+            }
+          ]
+        },
+        {
+          "columnId": "resolve",
+          "items": [
+            {
+              "text": "No updates after contacting support.",
+              "emphasis": "negative"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "opportunities",
+      "label": "Opportunities",
+      "description": "Ideas to try",
+      "cells": [
+        {
+          "columnId": "notice",
+          "items": [
+            {
+              "text": "Highlight unusual results.",
+              "emphasis": "positive"
+            }
+          ]
+        },
+        {
+          "columnId": "search",
+          "items": [
+            {
+              "text": "Let them attach details to a request.",
+              "emphasis": "positive"
+            }
+          ]
+        },
+        {
+          "columnId": "resolve",
+          "items": [
+            {
+              "text": "Send updates on open requests.",
+              "emphasis": "positive"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "notes": [],
+  "content": ""
+}

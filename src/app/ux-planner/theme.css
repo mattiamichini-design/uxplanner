@@ -1,0 +1,46 @@
+/* Dev Tools Theme - Minimal, Black & White, Sans-Serif */
+.dev-theme {
+  --journey-phase-1: var(--ux-phase-a);
+  --journey-phase-2: var(--ux-phase-b);
+  --journey-phase-3: var(--ux-phase-c);
+  --journey-phase-4: var(--ux-phase-b);
+  --journey-phase-5: var(--ux-phase-a);
+  font-family: var(--font-sans);
+}
+
+/* V7 Studio keeps one button radius while each control owns its responsive height. */
+.dev-theme [data-slot="button"] {
+  border-radius: var(--ux-radius-button);
+}
+
+.dev-theme[role="dialog"] {
+  background: var(--ux-surface);
+  border-radius: var(--ux-radius-panel);
+}
+
+.dev-theme[role="dialog"] [data-slot="button"] {
+  min-height: var(--spacing-ux-touch);
+}
+
+.dev-theme[role="dialog"] input,
+.dev-theme[role="dialog"] textarea,
+.dev-theme[role="dialog"] select {
+  min-height: var(--spacing-ux-touch);
+  background: var(--ux-surface);
+  border-radius: var(--ux-radius-control);
+}
+
+/* Inactive actions remain outline; filled neutrals identify selection. */
+.dev-theme [data-slot="button"][data-variant="outline"] { background: var(--ux-surface); }
+
+.dev-theme [data-slot="dialog-close"] { border-radius: 50%; background: var(--ux-selected); }
+.dev-theme [data-slot="dialog-header"], .dev-theme [data-slot="sheet-title"] { text-align: center; }
+@media (max-width: 767px) { .dev-theme[role="dialog"][data-mobile-placement="bottom-sheet"] { border-radius: 24px 24px 0 0; } }
+
+.dev-theme[role="dialog"] > form, .dev-theme[role="dialog"] > div:not([data-slot="dialog-header"]):not([data-slot="dialog-footer"]) { min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
+.dev-theme[role="dialog"] [data-slot="dialog-footer"] { position: sticky; bottom: 0; background: var(--ux-surface); padding-top: 1rem; }
+
+.dev-theme [data-slot="button"][data-variant="outline"]:is(.text-ux-danger, .text-destructive) { background: var(--ux-danger-soft); border-color: var(--ux-danger-border); }
+
+.dev-theme [data-slot="select-trigger"][data-select-shape="default"],
+.dev-theme [data-slot="select-trigger"][data-select-shape="control"] { border-radius: var(--ux-radius-control); }

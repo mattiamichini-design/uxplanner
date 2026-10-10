@@ -1,0 +1,87 @@
+/*
+ * UX Planner design tokens: semantic roles shared by the app (src/app/globals.css) and the landing/demo.
+ * Plain CSS on :root so portaled layers, the demo shell and the landing read the same values.
+ * Components consume roles through Tailwind utilities mapped in globals.css, or var(--ux-*) directly.
+ */
+:root {
+  /* Surfaces and text */
+  --ux-canvas: #f3f3f3;
+  --ux-surface: #ffffff;
+  --ux-sidebar: #fafafa;
+  --ux-soft: #f5f5f5;
+  --ux-selected: #e4e4e7;
+  --ux-board: oklch(98.5% 0 0);
+  --ux-row-header: oklch(96.7% 0.001 286.375);
+  --ux-text: #101426;
+  --ux-muted: #5f606b;
+  --ux-on-primary: #ffffff;
+
+  /* Borders, inputs and actions */
+  --ux-border: #e4e4e7;
+  --ux-border-quiet: #e7e7ea;
+  --ux-input: #d9d9de;
+  --ux-primary: #18181b;
+
+  /* Status */
+  --ux-success: #18794e;
+  --ux-success-soft: #e7f3ed;
+  --ux-danger: #b42318;
+  --ux-danger-soft: #fef3f2;
+  --ux-danger-border: #fda29b;
+  --ux-danger-text: oklch(57.7% 0.245 27.325);
+  --ux-drop-border: oklch(63.7% 0.237 25.331);
+  --ux-drop-surface: oklch(93.6% 0.032 17.717);
+  --ux-alert-surface: oklch(97.1% 0.013 17.38);
+  --ux-alert-border: oklch(88.5% 0.062 18.334);
+  --ux-alert-text: var(--ux-danger-text);
+
+  /* Journey board */
+  --ux-recall: #5f60cb;
+  --ux-phase-a: #efefef;
+  --ux-phase-b: #e7e7e7;
+  --ux-phase-c: #dfdfdf;
+  --ux-scrollbar: #a4a4ad;
+  --ux-track: #eeeef0;
+  --ux-thumb: #a3a3ad;
+  --ux-mark: oklch(94.5% 0.129 101.54);
+  --ux-match: oklch(76.9% 0.188 70.08);
+  --ux-match-soft: oklch(98.7% 0.022 95.277);
+  --ux-persona-chip: oklch(93.2% 0.032 255.585);
+
+  /* Diagram */
+  --ux-diagram-surface: var(--ux-surface);
+  --ux-diagram-text: #171717;
+  --ux-diagram-border: #e5e5e5;
+  --ux-diagram-line: #737373;
+
+  /* Backdrop */
+  --ux-scrim: #000000;
+
+  /* Radius roles */
+  --ux-radius-panel: 1rem;
+  --ux-radius-control: 0.625rem;
+  --ux-radius-button: 0.5625rem;
+  --ux-radius-badge: 0.5rem;
+  --ux-radius-xs: 0.25rem;
+
+  /* Type roles */
+  --ux-text-label: 0.8125rem;
+  --ux-text-micro: 0.6875rem;
+
+  /* Font family roles */
+  --ux-font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --ux-font-mono: Menlo, ui-monospace, SFMono-Regular, monospace;
+
+  /* Motion roles */
+  --ux-duration-fast: 150ms;
+  --ux-duration-base: 200ms;
+  --ux-duration-slow: 500ms;
+  --ux-duration-popover-open: 180ms;
+  --ux-duration-popover-close: 125ms;
+  --ux-duration-sheet-open: 240ms;
+  --ux-duration-sheet-close: 180ms;
+  --ux-duration-scrim: 300ms;
+  --ux-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ux-ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ux-ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+}

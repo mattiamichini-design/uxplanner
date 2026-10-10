@@ -1,0 +1,6 @@
+/* The product stylesheet, plus the demo's own sources.
+   globals.css limits Tailwind's class scan to src/, which no longer contains the classes the demo routes
+   (site/demo) and shell use. @source adds those folders to the same compilation without touching product CSS. */
+@import '../../../src/app/globals.css';
+@source '../../demo';
+@source './';

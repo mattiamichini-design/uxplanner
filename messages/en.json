@@ -1,0 +1,37 @@
+{
+  "shared": { "close": "Close" },
+  "ui": {
+    "confirmationDialog": {
+      "defaultTitle": "Are you sure?",
+      "defaultDescription": "This action cannot be undone.",
+      "confirm": "Confirm",
+      "cancel": "Cancel"
+    }
+  },
+  "uxPlannerShell": {
+    "closeNavigationBackdrop": "Close navigation overlay",
+    "closeNavigationMenu": "Close navigation menu",
+    "nav": {
+      "userFlows": "User Flows",
+      "userJourneys": "User Journeys",
+      "userPersonas": "User Personas",
+      "userStories": "User Stories"
+    },
+    "navigationLabel": "UX Planner sections",
+    "openNavigationMenu": "Open navigation menu",
+    "title": "UX Planner",
+    "userFlows": {
+      "closeDiagramFullscreen": "Close diagram fullscreen",
+      "description": "Description",
+      "diagramFullscreenDescription": "Diagram view with synchronized zoom controls.",
+      "diagramFullscreenTitle": "Diagram fullscreen",
+      "flowMap": "Flow Map",
+      "openDiagramFullscreen": "Open diagram fullscreen",
+      "resetZoom": "Reset zoom to 100%",
+      "resetZoomTitle": "Click to reset zoom to 100%",
+      "selectVariant": "Select a variant to view the flow",
+      "zoomIn": "Zoom in",
+      "zoomOut": "Zoom out"
+    }
+  }
+}

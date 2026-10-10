@@ -1,0 +1,160 @@
+{
+  "title": "Getting started · Persona 2",
+  "meta": {
+    "persona": "Persona 2",
+    "journeyType": "onboarding",
+    "updatedAt": "2026-10-01T00:00:00.000Z",
+    "summary": "Sample journey for the UX Planner demo."
+  },
+  "columns": [
+    {
+      "id": "discover",
+      "label": "Discover",
+      "subtitle": "First contact"
+    },
+    {
+      "id": "sign-up",
+      "label": "Sign up",
+      "subtitle": "Creating an account"
+    },
+    {
+      "id": "first-use",
+      "label": "First use",
+      "subtitle": "A first result"
+    }
+  ],
+  "rows": [
+    {
+      "id": "actions",
+      "label": "User actions",
+      "description": "What the persona does",
+      "cells": [
+        {
+          "columnId": "discover",
+          "items": [
+            {
+              "text": "Compares the product with the tool they use today."
+            }
+          ]
+        },
+        {
+          "columnId": "sign-up",
+          "items": [
+            {
+              "text": "Signs up with an existing account."
+            }
+          ]
+        },
+        {
+          "columnId": "first-use",
+          "items": [
+            {
+              "text": "Imports their own data."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "goals",
+      "label": "Goals",
+      "description": "What they want to achieve",
+      "cells": [
+        {
+          "columnId": "discover",
+          "items": [
+            {
+              "text": "Judge whether switching is worth it."
+            }
+          ]
+        },
+        {
+          "columnId": "sign-up",
+          "items": [
+            {
+              "text": "Keep the same login they already use."
+            }
+          ]
+        },
+        {
+          "columnId": "first-use",
+          "items": [
+            {
+              "text": "Work with real data from day one."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pain-points",
+      "label": "Pain points",
+      "description": "What gets in the way",
+      "cells": [
+        {
+          "columnId": "discover",
+          "items": [
+            {
+              "text": "Hard to compare features at a glance.",
+              "emphasis": "negative"
+            }
+          ]
+        },
+        {
+          "columnId": "sign-up",
+          "items": [
+            {
+              "text": "Being asked for details twice.",
+              "emphasis": "negative"
+            }
+          ]
+        },
+        {
+          "columnId": "first-use",
+          "items": [
+            {
+              "text": "Import errors without an explanation.",
+              "emphasis": "negative"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "opportunities",
+      "label": "Opportunities",
+      "description": "Ideas to try",
+      "cells": [
+        {
+          "columnId": "discover",
+          "items": [
+            {
+              "text": "A clear comparison of features.",
+              "emphasis": "positive"
+            }
+          ]
+        },
+        {
+          "columnId": "sign-up",
+          "items": [
+            {
+              "text": "Single sign-on.",
+              "emphasis": "positive"
+            }
+          ]
+        },
+        {
+          "columnId": "first-use",
+          "items": [
+            {
+              "text": "Explain import errors and how to fix them.",
+              "emphasis": "positive"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "notes": [],
+  "content": ""
+}

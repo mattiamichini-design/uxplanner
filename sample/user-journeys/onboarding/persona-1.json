@@ -1,0 +1,160 @@
+{
+  "title": "Getting started · Persona 1",
+  "meta": {
+    "persona": "Persona 1",
+    "journeyType": "onboarding",
+    "updatedAt": "2026-10-01T00:00:00.000Z",
+    "summary": "Sample journey for the UX Planner demo."
+  },
+  "columns": [
+    {
+      "id": "discover",
+      "label": "Discover",
+      "subtitle": "First contact"
+    },
+    {
+      "id": "sign-up",
+      "label": "Sign up",
+      "subtitle": "Creating an account"
+    },
+    {
+      "id": "first-use",
+      "label": "First use",
+      "subtitle": "A first result"
+    }
+  ],
+  "rows": [
+    {
+      "id": "actions",
+      "label": "User actions",
+      "description": "What the persona does",
+      "cells": [
+        {
+          "columnId": "discover",
+          "items": [
+            {
+              "text": "Opens the product from a link and reads the home page."
+            }
+          ]
+        },
+        {
+          "columnId": "sign-up",
+          "items": [
+            {
+              "text": "Creates an account with an email address."
+            }
+          ]
+        },
+        {
+          "columnId": "first-use",
+          "items": [
+            {
+              "text": "Starts from an example and changes it."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "goals",
+      "label": "Goals",
+      "description": "What they want to achieve",
+      "cells": [
+        {
+          "columnId": "discover",
+          "items": [
+            {
+              "text": "Understand what the product does."
+            }
+          ]
+        },
+        {
+          "columnId": "sign-up",
+          "items": [
+            {
+              "text": "Get in without friction."
+            }
+          ]
+        },
+        {
+          "columnId": "first-use",
+          "items": [
+            {
+              "text": "See a useful result quickly."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pain-points",
+      "label": "Pain points",
+      "description": "What gets in the way",
+      "cells": [
+        {
+          "columnId": "discover",
+          "items": [
+            {
+              "text": "Unsure whether it fits their need.",
+              "emphasis": "negative"
+            }
+          ]
+        },
+        {
+          "columnId": "sign-up",
+          "items": [
+            {
+              "text": "Too many fields before any value.",
+              "emphasis": "negative"
+            }
+          ]
+        },
+        {
+          "columnId": "first-use",
+          "items": [
+            {
+              "text": "An empty page with no hint of where to start.",
+              "emphasis": "negative"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "opportunities",
+      "label": "Opportunities",
+      "description": "Ideas to try",
+      "cells": [
+        {
+          "columnId": "discover",
+          "items": [
+            {
+              "text": "Show a short example on the home page.",
+              "emphasis": "positive"
+            }
+          ]
+        },
+        {
+          "columnId": "sign-up",
+          "items": [
+            {
+              "text": "Ask only for what is needed now.",
+              "emphasis": "positive"
+            }
+          ]
+        },
+        {
+          "columnId": "first-use",
+          "items": [
+            {
+              "text": "Offer ready-made examples.",
+              "emphasis": "positive"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "notes": [],
+  "content": ""
+}

@@ -1,0 +1,160 @@
+{
+  "title": "Getting help · Persona 1",
+  "meta": {
+    "persona": "Persona 1",
+    "journeyType": "support",
+    "updatedAt": "2026-10-01T00:00:00.000Z",
+    "summary": "Sample journey for the UX Planner demo."
+  },
+  "columns": [
+    {
+      "id": "notice",
+      "label": "Notice",
+      "subtitle": "Something goes wrong"
+    },
+    {
+      "id": "search",
+      "label": "Search",
+      "subtitle": "Looking for an answer"
+    },
+    {
+      "id": "resolve",
+      "label": "Resolve",
+      "subtitle": "Getting back on track"
+    }
+  ],
+  "rows": [
+    {
+      "id": "actions",
+      "label": "User actions",
+      "description": "What the persona does",
+      "cells": [
+        {
+          "columnId": "notice",
+          "items": [
+            {
+              "text": "Sees an error message."
+            }
+          ]
+        },
+        {
+          "columnId": "search",
+          "items": [
+            {
+              "text": "Opens the help page."
+            }
+          ]
+        },
+        {
+          "columnId": "resolve",
+          "items": [
+            {
+              "text": "Follows an article to fix the problem."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "goals",
+      "label": "Goals",
+      "description": "What they want to achieve",
+      "cells": [
+        {
+          "columnId": "notice",
+          "items": [
+            {
+              "text": "Understand what happened."
+            }
+          ]
+        },
+        {
+          "columnId": "search",
+          "items": [
+            {
+              "text": "Find an answer on their own."
+            }
+          ]
+        },
+        {
+          "columnId": "resolve",
+          "items": [
+            {
+              "text": "Continue without losing work."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pain-points",
+      "label": "Pain points",
+      "description": "What gets in the way",
+      "cells": [
+        {
+          "columnId": "notice",
+          "items": [
+            {
+              "text": "The message does not say what to do.",
+              "emphasis": "negative"
+            }
+          ]
+        },
+        {
+          "columnId": "search",
+          "items": [
+            {
+              "text": "Articles use unfamiliar terms.",
+              "emphasis": "negative"
+            }
+          ]
+        },
+        {
+          "columnId": "resolve",
+          "items": [
+            {
+              "text": "Work is lost during the fix.",
+              "emphasis": "negative"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "opportunities",
+      "label": "Opportunities",
+      "description": "Ideas to try",
+      "cells": [
+        {
+          "columnId": "notice",
+          "items": [
+            {
+              "text": "Write errors that suggest a next step.",
+              "emphasis": "positive"
+            }
+          ]
+        },
+        {
+          "columnId": "search",
+          "items": [
+            {
+              "text": "Link the right article from the error.",
+              "emphasis": "positive"
+            }
+          ]
+        },
+        {
+          "columnId": "resolve",
+          "items": [
+            {
+              "text": "Save work automatically.",
+              "emphasis": "positive"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "notes": [],
+  "content": ""
+}

@@ -1,0 +1,333 @@
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+/* Limit Tailwind v4 auto-discovery to local app sources and avoid external agent symlink traversal. */
+@import "tailwindcss" source("../");
+@import "tw-animate-css";
+@import "../styles/tokens.css";
+@custom-variant ux-narrow (@media (max-width: 374px));
+
+/*
+ * Token contract. Shared --ux-* roles (colour, radius, type, font, motion) live in src/styles/tokens.css and are
+ * mapped to utilities below. App-only layout sizes are declared once in the static @theme block, so utilities
+ * such as rounded-ux-control, text-ux-label and h-ux-header read the same variable everywhere.
+ * The shadcn-style variables in :root, used by the generic primitives in components/ui, alias the same roles, so
+ * layers portaled outside the app shell match it.
+ */
+:root {
+  --background: var(--ux-canvas);
+  --foreground: var(--ux-text);
+  --card: var(--ux-surface);
+  --card-foreground: var(--ux-text);
+  --popover: var(--ux-surface);
+  --popover-foreground: var(--ux-text);
+  --primary: var(--ux-primary);
+  --primary-foreground: var(--ux-on-primary);
+  --secondary: var(--ux-soft);
+  --secondary-foreground: var(--ux-primary);
+  --muted: var(--ux-soft);
+  --muted-foreground: var(--ux-muted);
+  --accent: var(--ux-soft);
+  --accent-foreground: var(--ux-primary);
+  --destructive: var(--ux-danger);
+  --destructive-foreground: var(--ux-on-primary);
+  --success-primary: oklch(0.49 0.13 151);
+  --error-primary: var(--destructive);
+  --warning-primary: oklch(0.52 0.13 70.08);
+  --border: var(--ux-border);
+  --input: var(--ux-input);
+  --ring: var(--ux-primary);
+  --font-family-sans: var(--ux-font-sans);
+  --font-family-mono: var(--ux-font-mono);
+  --font-sans: var(--font-family-sans);
+  --font-mono: var(--font-family-mono);
+  --radius: var(--ux-radius-button);
+  --control-radius: 1rem;
+  --ux-offset-recall: -4px;
+  --shadow-sm: 0px 1px 4px 0px hsl(0 0% 0% / 0.05), 0px 1px 2px -1px hsl(0 0% 0% / 0.05);
+  --shadow: 0px 1px 4px 0px hsl(0 0% 0% / 0.05), 0px 1px 2px -1px hsl(0 0% 0% / 0.05);
+  --shadow-md: 0px 1px 4px 0px hsl(0 0% 0% / 0.05), 0px 2px 4px -1px hsl(0 0% 0% / 0.05);
+  --shadow-lg: 0px 1px 4px 0px hsl(0 0% 0% / 0.05), 0px 4px 6px -1px hsl(0 0% 0% / 0.05);
+  --shadow-xl: 0px 1px 4px 0px hsl(0 0% 0% / 0.05), 0px 8px 10px -1px hsl(0 0% 0% / 0.05);
+  --shadow-2xl: 0px 1px 4px 0px hsl(0 0% 0% / 0.13);
+  --tracking-normal: 0rem;
+  --spacing: 0.25rem;
+  --squircle-radius: 16px;
+
+  /* Stacking layers, lowest to highest (drag sits above toasts). Use z-(--z-ux-*) in components. */
+  --z-ux-raised: 10;
+  --z-ux-lifted: 20;
+  --z-ux-sticky: 40;
+  --z-ux-recall: 45;
+  --z-ux-board: 50;
+  --z-ux-menu: 80;
+  --z-ux-scrim: 90;
+  --z-ux-drop: 95;
+  --z-ux-chrome: 100;
+  --z-ux-modal: 110;
+  --z-ux-modal-child: 115;
+  --z-ux-modal-nested: 120;
+  --z-ux-flow-top: 130;
+  --z-ux-toast: 200;
+  --z-ux-drag: 999;
+}
+
+/* Roles from tokens.css exposed as utilities. Static keeps the --radius-ux-* aliases on :root for existing var() consumers. */
+@theme static {
+  --radius-ux-panel: var(--ux-radius-panel);
+  --radius-ux-control: var(--ux-radius-control);
+  --radius-ux-button: var(--ux-radius-button);
+  --radius-ux-badge: var(--ux-radius-badge);
+  --radius-ux-xs: var(--ux-radius-xs);
+  --text-ux-label: var(--ux-text-label);
+  --text-ux-micro: var(--ux-text-micro);
+}
+
+/* Layout sizes owned by the app shell and its dialogs. */
+@theme static {
+  --container-ux-rail: 4rem;
+  --container-ux-sidebar-compact: 13rem;
+  --container-ux-sidebar: 15.75rem;
+  --container-ux-reading: 51.75rem;
+  --container-ux-profile: 22.5rem;
+  --container-ux-story: 58.75rem;
+  --container-ux-dialog: 640px;
+  --container-ux-dialog-wide: 760px;
+  --container-ux-modal: 36rem;
+  --container-ux-drawer: 22rem;
+  --container-ux-sheet: 440px;
+  --container-ux-controls: 60rem;
+  --spacing-ux-touch: 2.75rem;
+  --spacing-ux-header: 72px;
+  --spacing-ux-toolbar: 76px;
+  --spacing-ux-icon: 18px;
+  --spacing-ux-field-min: 80px;
+  --spacing-ux-chip-list: 140px;
+  --spacing-ux-viewport-fit: calc(100dvh - 2rem);
+  --spacing-ux-viewport-tight: calc(100dvh - 1rem);
+  --spacing-ux-inline-fit: calc(100% - 2rem);
+  --breakpoint-ux-wide: 90rem;
+}
+
+@layer utilities {
+  .journey-responsive-grid {
+    grid-template-columns: var(--journey-columns-mobile);
+  }
+
+  @media (min-width: 48rem) {
+    .journey-responsive-grid {
+      grid-template-columns: var(--journey-columns-desktop);
+    }
+  }
+
+  .journey-board-scroll {
+    scrollbar-width: auto;
+  }
+
+  .journey-board-scroll::-webkit-scrollbar {
+    width: 8px;
+    height: 0;
+  }
+
+  .journey-board-scroll::-webkit-scrollbar-thumb {
+    background: var(--ux-scrollbar);
+    border-radius: var(--ux-radius-xs);
+  }
+
+  .shape-capsule,
+  .shape-circle {
+    border-radius: 9999px;
+  }
+
+  .shape-squircle {
+    border-radius: var(--squircle-radius, var(--radius-xl));
+    corner-shape: squircle;
+  }
+
+  .shape-squircle[data-squircle-radius="0"] {
+    --squircle-radius: 16px;
+  }
+
+  .shape-squircle[data-squircle-radius="4"] {
+    --squircle-radius: 16px;
+  }
+
+  .shape-squircle[data-squircle-radius="6"] {
+    --squircle-radius: 16px;
+  }
+
+  .shape-squircle[data-squircle-radius="8"] {
+    --squircle-radius: 16px;
+  }
+
+  .shape-squircle[data-squircle-radius="10"] {
+    --squircle-radius: 16px;
+  }
+
+  .shape-squircle[data-squircle-radius="12"] {
+    --squircle-radius: 16px;
+  }
+
+  .shape-squircle[data-squircle-radius="14"] {
+    --squircle-radius: 16px;
+  }
+
+  .shape-squircle[data-squircle-radius="16"] {
+    --squircle-radius: 16px;
+  }
+
+  .shape-squircle[data-squircle-radius="20"] {
+    --squircle-radius: 20px;
+  }
+
+  .shape-squircle[data-squircle-radius="24"] {
+    --squircle-radius: 24px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .motion-overlay-reduced {
+      --tw-animation-duration: var(--ux-duration-fast) !important;
+      --tw-enter-rotate: 0deg !important;
+      --tw-enter-scale: 1 !important;
+      --tw-enter-translate-x: 0 !important;
+      --tw-enter-translate-y: 0 !important;
+      --tw-exit-rotate: 0deg !important;
+      --tw-exit-scale: 1 !important;
+      --tw-exit-translate-x: 0 !important;
+      --tw-exit-translate-y: 0 !important;
+    }
+  }
+}
+
+.journey-recall-cell {
+  transition:
+    opacity var(--ux-duration-fast) var(--ux-ease-out),
+    translate var(--ux-duration-fast) var(--ux-ease-out),
+    background-color var(--ux-duration-fast) ease;
+}
+
+@starting-style {
+  .journey-recall-cell {
+    opacity: 0;
+    translate: 0 var(--ux-offset-recall);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .journey-recall-cell {
+    transition: background-color var(--ux-duration-fast) ease;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success-primary: var(--success-primary);
+  --color-error-primary: var(--error-primary);
+  --color-warning-primary: var(--warning-primary);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ux-canvas: var(--ux-canvas);
+  --color-ux-surface: var(--ux-surface);
+  --color-ux-sidebar: var(--ux-sidebar);
+  --color-ux-soft: var(--ux-soft);
+  --color-ux-selected: var(--ux-selected);
+  --color-ux-text: var(--ux-text);
+  --color-ux-muted: var(--ux-muted);
+  --color-ux-border: var(--ux-border);
+  --color-ux-border-quiet: var(--ux-border-quiet);
+  --color-ux-input: var(--ux-input);
+  --color-ux-primary: var(--ux-primary);
+  --color-ux-on-primary: var(--ux-on-primary);
+  --color-ux-success: var(--ux-success);
+  --color-ux-success-soft: var(--ux-success-soft);
+  --color-ux-danger: var(--ux-danger);
+  --color-ux-danger-soft: var(--ux-danger-soft);
+  --color-ux-danger-border: var(--ux-danger-border);
+  --color-ux-danger-text: var(--ux-danger-text);
+  --color-ux-recall: var(--ux-recall);
+  --color-ux-scrim: var(--ux-scrim);
+  --color-ux-track: var(--ux-track);
+  --color-ux-thumb: var(--ux-thumb);
+  --color-ux-board: var(--ux-board);
+  --color-ux-row-header: var(--ux-row-header);
+  --color-ux-drop-border: var(--ux-drop-border);
+  --color-ux-drop-surface: var(--ux-drop-surface);
+  --color-ux-alert-surface: var(--ux-alert-surface);
+  --color-ux-alert-border: var(--ux-alert-border);
+  --color-ux-alert-text: var(--ux-alert-text);
+  --color-ux-diagram-surface: var(--ux-diagram-surface);
+  --color-ux-persona-chip: var(--ux-persona-chip);
+  --color-ux-mark: var(--ux-mark);
+  --color-ux-match: var(--ux-match);
+  --color-ux-match-soft: var(--ux-match-soft);
+
+  --font-sans: var(--font-family-sans);
+  --font-mono: var(--font-family-mono);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-control: var(--control-radius);
+
+  --shadow-sm: var(--shadow-sm);
+  --shadow: var(--shadow);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+  --shadow-2xl: var(--shadow-2xl);
+
+  --tracking-tight: calc(var(--tracking-normal) - 0.025em);
+  --tracking-normal: var(--tracking-normal);
+}
+
+body {
+  letter-spacing: var(--tracking-normal);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-transparent;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-sans font-semibold;
+  }
+
+  a,
+  button {
+    @apply font-sans;
+  }
+
+  button {
+    @apply cursor-pointer;
+  }
+}

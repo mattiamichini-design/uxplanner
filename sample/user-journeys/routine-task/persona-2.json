@@ -1,0 +1,160 @@
+{
+  "title": "Everyday task · Persona 2",
+  "meta": {
+    "persona": "Persona 2",
+    "journeyType": "routine-task",
+    "updatedAt": "2026-10-01T00:00:00.000Z",
+    "summary": "Sample journey for the UX Planner demo."
+  },
+  "columns": [
+    {
+      "id": "start",
+      "label": "Start",
+      "subtitle": "Picking up the task"
+    },
+    {
+      "id": "do",
+      "label": "Do",
+      "subtitle": "Doing the work"
+    },
+    {
+      "id": "finish",
+      "label": "Finish",
+      "subtitle": "Checking the result"
+    }
+  ],
+  "rows": [
+    {
+      "id": "actions",
+      "label": "User actions",
+      "description": "What the persona does",
+      "cells": [
+        {
+          "columnId": "start",
+          "items": [
+            {
+              "text": "Resumes the last task from the home page."
+            }
+          ]
+        },
+        {
+          "columnId": "do",
+          "items": [
+            {
+              "text": "Uses a shortcut for repeated steps."
+            }
+          ]
+        },
+        {
+          "columnId": "finish",
+          "items": [
+            {
+              "text": "Reviews what changed since last time."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "goals",
+      "label": "Goals",
+      "description": "What they want to achieve",
+      "cells": [
+        {
+          "columnId": "start",
+          "items": [
+            {
+              "text": "Pick up where they left off."
+            }
+          ]
+        },
+        {
+          "columnId": "do",
+          "items": [
+            {
+              "text": "Spend less time on repetition."
+            }
+          ]
+        },
+        {
+          "columnId": "finish",
+          "items": [
+            {
+              "text": "Keep track of changes."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pain-points",
+      "label": "Pain points",
+      "description": "What gets in the way",
+      "cells": [
+        {
+          "columnId": "start",
+          "items": [
+            {
+              "text": "Has to search again for the last task.",
+              "emphasis": "negative"
+            }
+          ]
+        },
+        {
+          "columnId": "do",
+          "items": [
+            {
+              "text": "The same steps every time.",
+              "emphasis": "negative"
+            }
+          ]
+        },
+        {
+          "columnId": "finish",
+          "items": [
+            {
+              "text": "No history of changes.",
+              "emphasis": "negative"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "opportunities",
+      "label": "Opportunities",
+      "description": "Ideas to try",
+      "cells": [
+        {
+          "columnId": "start",
+          "items": [
+            {
+              "text": "Show recent tasks first.",
+              "emphasis": "positive"
+            }
+          ]
+        },
+        {
+          "columnId": "do",
+          "items": [
+            {
+              "text": "Let them save steps as a template.",
+              "emphasis": "positive"
+            }
+          ]
+        },
+        {
+          "columnId": "finish",
+          "items": [
+            {
+              "text": "Add a simple change history.",
+              "emphasis": "positive"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "notes": [],
+  "content": ""
+}

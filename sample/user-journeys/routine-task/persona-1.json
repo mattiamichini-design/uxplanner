@@ -1,0 +1,160 @@
+{
+  "title": "Everyday task · Persona 1",
+  "meta": {
+    "persona": "Persona 1",
+    "journeyType": "routine-task",
+    "updatedAt": "2026-10-01T00:00:00.000Z",
+    "summary": "Sample journey for the UX Planner demo."
+  },
+  "columns": [
+    {
+      "id": "start",
+      "label": "Start",
+      "subtitle": "Picking up the task"
+    },
+    {
+      "id": "do",
+      "label": "Do",
+      "subtitle": "Doing the work"
+    },
+    {
+      "id": "finish",
+      "label": "Finish",
+      "subtitle": "Checking the result"
+    }
+  ],
+  "rows": [
+    {
+      "id": "actions",
+      "label": "User actions",
+      "description": "What the persona does",
+      "cells": [
+        {
+          "columnId": "start",
+          "items": [
+            {
+              "text": "Looks for the task in the menu."
+            }
+          ]
+        },
+        {
+          "columnId": "do",
+          "items": [
+            {
+              "text": "Follows the steps one by one."
+            }
+          ]
+        },
+        {
+          "columnId": "finish",
+          "items": [
+            {
+              "text": "Saves and checks the result."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "goals",
+      "label": "Goals",
+      "description": "What they want to achieve",
+      "cells": [
+        {
+          "columnId": "start",
+          "items": [
+            {
+              "text": "Find the right place to start."
+            }
+          ]
+        },
+        {
+          "columnId": "do",
+          "items": [
+            {
+              "text": "Avoid mistakes."
+            }
+          ]
+        },
+        {
+          "columnId": "finish",
+          "items": [
+            {
+              "text": "Be sure the work is saved."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pain-points",
+      "label": "Pain points",
+      "description": "What gets in the way",
+      "cells": [
+        {
+          "columnId": "start",
+          "items": [
+            {
+              "text": "The task is hidden in a submenu.",
+              "emphasis": "negative"
+            }
+          ]
+        },
+        {
+          "columnId": "do",
+          "items": [
+            {
+              "text": "Unclear what each step expects.",
+              "emphasis": "negative"
+            }
+          ]
+        },
+        {
+          "columnId": "finish",
+          "items": [
+            {
+              "text": "No confirmation after saving.",
+              "emphasis": "negative"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "opportunities",
+      "label": "Opportunities",
+      "description": "Ideas to try",
+      "cells": [
+        {
+          "columnId": "start",
+          "items": [
+            {
+              "text": "Put common tasks on the home page.",
+              "emphasis": "positive"
+            }
+          ]
+        },
+        {
+          "columnId": "do",
+          "items": [
+            {
+              "text": "Add short hints to each step.",
+              "emphasis": "positive"
+            }
+          ]
+        },
+        {
+          "columnId": "finish",
+          "items": [
+            {
+              "text": "Confirm what was saved.",
+              "emphasis": "positive"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "notes": [],
+  "content": ""
+}
