@@ -40,6 +40,7 @@ The MCP and release checks start local servers on ports 4327, 4331, 4355 and 435
 ## Pull requests
 
 - Keep each pull request to one change, and explain what it changes and why.
+- Open the pull request as a draft while you are still pushing changes. CI skips drafts; it runs when you mark the pull request ready for review and on each push after that.
 - Add or update tests for behaviour you change. Tests use synthetic data; never commit real research or personal data.
 - Use [Conventional Commits](https://www.conventionalcommits.org/) for commit messages, for example `fix(journeys): keep note order after a CSV import`.
 - Update the README or the files in `docs/` when you change behaviour they describe. Write them in English and describe how things work now, not how they changed.
