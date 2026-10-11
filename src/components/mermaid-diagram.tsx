@@ -117,7 +117,15 @@ export function MermaidDiagram({ chart, zoom = 1 }: MermaidDiagramProps) {
         const id = `mermaid-${Math.random().toString(36).substr(2, 9)}`;
         // Measuring before the webfont arrives would size the nodes for the fallback font.
         if (document.fonts) await document.fonts.load(`16px ${diagramFont}`).catch(() => undefined);
-        mermaid.initialize({ startOnLoad: false, theme: "base", themeVariables: readDiagramTheme(), securityLevel: "strict" });
+        // Pin the dagre layout and classic look: Mermaid otherwise lays flows out with ELK and draws them in its neo look.
+        mermaid.initialize({
+          startOnLoad: false,
+          theme: "base",
+          themeVariables: readDiagramTheme(),
+          layout: "dagre",
+          look: "classic",
+          securityLevel: "strict",
+        });
         const { svg } = await mermaid.render(id, chart);
 
         if (isMounted) {

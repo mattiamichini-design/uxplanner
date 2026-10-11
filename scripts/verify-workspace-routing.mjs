@@ -6,9 +6,8 @@ import { createHash } from 'node:crypto';
 import { spawn } from 'node:child_process';
 import { once } from 'node:events';
 import { pathToFileURL } from 'node:url';
-import { Client } from '@modelcontextprotocol/sdk/client/index.js';
-import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
-import { ListRootsRequestSchema } from '@modelcontextprotocol/sdk/types.js';
+import { Client } from '@modelcontextprotocol/client';
+import { StdioClientTransport } from '@modelcontextprotocol/client/stdio';
 const temp=fs.mkdtempSync(path.join(os.tmpdir(),'ux-routing-'));
 const registry=path.join(temp,'registry'),unregistered=path.join(temp,'unregistered'), a=path.join(temp,'repo-a'),b=path.join(temp,'repo-b'),missing=path.join(temp,'missing');
 const env={...process.env,UX_PLANNER_REGISTRY_DIR:registry};
@@ -23,7 +22,7 @@ async function start(root,port){
 }
 async function connect(cwd,roots){
   const client=new Client({name:'UX routing check',version:'1'},{capabilities:roots?{roots:{listChanged:true}}:{}});clients.push(client);
-  if(roots)client.setRequestHandler(ListRootsRequestSchema,async()=>({roots:roots.map(root=>({uri:pathToFileURL(root).href}))}));
+  if(roots)client.setRequestHandler('roots/list',async()=>({roots:roots.map(root=>({uri:pathToFileURL(root).href}))}));
   await client.connect(new StdioClientTransport({command:process.execPath,args:[server],cwd,env}));return client;
 }
 const call=(client,name,args={})=>client.callTool({name,arguments:args});
