@@ -2,8 +2,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { McpServer, ResourceTemplate } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import { McpServer, ResourceTemplate } from '@modelcontextprotocol/server';
+import { StdioServerTransport } from '@modelcontextprotocol/server/stdio';
 import { registerAppTool, registerAppResource, RESOURCE_MIME_TYPE } from '@modelcontextprotocol/ext-apps/server';
 import { z } from 'zod';
 import { integrationTools, workspaceViewSchema } from '../src/lib/server/integration-schemas.mjs';
@@ -20,14 +20,14 @@ const uri='ui://ux-planner/workspace-v2';
 const result=data=>({content:[{type:'text',text:JSON.stringify(data)}],structuredContent:data});
 const shellQuote=value=>"'"+value.replaceAll("'","'\\''")+"'";
 function startCommand(root){return process.env.UX_PLANNER_CLI?`${shellQuote(process.execPath)} ${shellQuote(process.env.UX_PLANNER_CLI)} start --root ${shellQuote(root)} --port 4311`:`ux-planner start --root ${shellQuote(root)} --port 4311`;}
-async function routing(extra){
+async function routing(ctx){
   const rootsSupported=Boolean(server.server.getClientCapabilities()?.roots);
   let roots=[];
   if(rootsSupported){
     roots=(await server.server.listRoots({}, {timeout:3000})).roots.map(root=>fs.realpathSync(fileURLToPath(root.uri)));
     if(roots.length>1||roots.some(root=>root!==cwd))throw new Error('MCP roots conflict with the current repository cwd. No other workspace will be used.');
   }
-  return {mode:cwd===path.parse(cwd).root?'global':'repository',root:cwd,projects:registeredWorkspaces(),evidence:{cwd,rootsSupported,roots,metadataKeys:Object.keys(extra?._meta||{})}};
+  return {mode:cwd===path.parse(cwd).root?'global':'repository',root:cwd,projects:registeredWorkspaces(),evidence:{cwd,rootsSupported,roots,metadataKeys:Object.keys(ctx?.mcpReq?._meta||{})}};
 }
 async function runnerRequest(root,action,args={}){
   const local=runnerSession(root);
@@ -37,8 +37,8 @@ async function runnerRequest(root,action,args={}){
   if(data.workspaceRoot!==root)throw new Error('Runner belongs to another repository. No data will be used.');
   return data;
 }
-async function workspaceContext(extra){
-  const context=await routing(extra);
+async function workspaceContext(ctx){
+  const context=await routing(ctx);
   const candidates=context.mode==='global'?context.projects:context.projects.filter(project=>project.root===cwd);
   const projects=await Promise.all(candidates.map(async project=>{
     try{await runnerRequest(project.root,'workspace_identity');return {...project,running:true,startCommand:startCommand(project.root)};}
@@ -46,8 +46,8 @@ async function workspaceContext(extra){
   }));
   return {...context,projects,...context.mode==='repository'&&projects.length===0?{error:'UX Planner is not registered in this repository. Run ux-planner init here; no other repository will be opened.',startCommand:startCommand(cwd)}:{}};
 }
-async function request(action,input={},extra){
-  const {workspace:chosen,...args}=input,context=await routing(extra);
+async function request(action,input={},ctx){
+  const {workspace:chosen,...args}=input,context=await routing(ctx);
   let project;
   if(context.mode==='repository'){
     project=context.projects.find(project=>project.root===cwd);
@@ -65,22 +65,22 @@ async function request(action,input={},extra){
   if(action==='list_documents')data.documents=data.documents.filter(doc=>`${doc.title} ${doc.kind} ${doc.id}`.toLowerCase().includes((args.query||'').toLowerCase()));
   return {...data,workspace:{id:project.id,root:project.root,name:project.name}};
 }
-const execute=async(action,args,extra)=>{try{return result(await request(action,args,extra));}catch(error){return {isError:true,content:[{type:'text',text:error.message}]};}};
-registerAppTool(server,'open_workspace',{title:'UX Planner',description:'Open registered local projects globally, or only this repository in a chat. Never defaults to a demo.',inputSchema:{},annotations:{readOnlyHint:true,destructiveHint:false,openWorldHint:false},_meta:{ui:{resourceUri:uri,visibility:['app','model']},'openai/ui':{entrypoints:[{type:'global'},{type:'thread'}]}}},async(_args,extra)=>{try{return result(await workspaceContext(extra));}catch(error){return {isError:true,content:[{type:'text',text:error.message}]};}});
-for(const [name,tool] of Object.entries(integrationTools))server.registerTool(name,{title:tool.title,description:tool.description,inputSchema:tool.schema.extend({workspace}),annotations:{readOnlyHint:tool.readOnly,destructiveHint:!tool.readOnly,openWorldHint:false}},(args,extra)=>execute(name,args,extra));
-server.registerTool('workspace_context',{title:'Registered UX Planner projects',description:'List opted-in installations and runner status; repository processes return only their current root.',inputSchema:{},annotations:{readOnlyHint:true,openWorldHint:false},_meta:{ui:{visibility:['app']}}},async(_args,extra)=>{try{return result(await workspaceContext(extra));}catch(error){return {isError:true,content:[{type:'text',text:error.message}]};}});
-server.registerTool('search_mentions',{title:'Find a UX document',description:'Find UX Planner documents in the current repository or an explicitly selected global workspace.',inputSchema:{query:z.string().max(512),workspace},annotations:{readOnlyHint:true,openWorldHint:false},_meta:{ui:{visibility:['app']},'openai/extensions':{'mentions/search':{}}}},async(args,extra)=>{
-  try{const {documents}=await request('list_documents',args,extra);return result({items:documents.slice(0,30).map(doc=>({type:'resource_link',uri:doc.uri,name:doc.title,description:`${doc.kind} · docs/ux/${doc.id}`,mimeType:doc.kind==='journey'?'application/json':'text/markdown'}))});}catch(error){return {isError:true,content:[{type:'text',text:error.message}]};}
+const execute=async(action,args,ctx)=>{try{return result(await request(action,args,ctx));}catch(error){return {isError:true,content:[{type:'text',text:error.message}]};}};
+registerAppTool(server,'open_workspace',{title:'UX Planner',description:'Open registered local projects globally, or only this repository in a chat. Never defaults to a demo.',inputSchema:z.object({}),annotations:{readOnlyHint:true,destructiveHint:false,openWorldHint:false},_meta:{ui:{resourceUri:uri,visibility:['app','model']},'openai/ui':{entrypoints:[{type:'global'},{type:'thread'}]}}},async(_args,ctx)=>{try{return result(await workspaceContext(ctx));}catch(error){return {isError:true,content:[{type:'text',text:error.message}]};}});
+for(const [name,tool] of Object.entries(integrationTools))server.registerTool(name,{title:tool.title,description:tool.description,inputSchema:tool.schema.extend({workspace}),annotations:{readOnlyHint:tool.readOnly,destructiveHint:!tool.readOnly,openWorldHint:false}},(args,ctx)=>execute(name,args,ctx));
+server.registerTool('workspace_context',{title:'Registered UX Planner projects',description:'List opted-in installations and runner status; repository processes return only their current root.',inputSchema:z.object({}),annotations:{readOnlyHint:true,openWorldHint:false},_meta:{ui:{visibility:['app']}}},async(_args,ctx)=>{try{return result(await workspaceContext(ctx));}catch(error){return {isError:true,content:[{type:'text',text:error.message}]};}});
+server.registerTool('search_mentions',{title:'Find a UX document',description:'Find UX Planner documents in the current repository or an explicitly selected global workspace.',inputSchema:z.object({query:z.string().max(512),workspace}),annotations:{readOnlyHint:true,openWorldHint:false},_meta:{ui:{visibility:['app']},'openai/extensions':{'mentions/search':{}}}},async(args,ctx)=>{
+  try{const {documents}=await request('list_documents',args,ctx);return result({items:documents.slice(0,30).map(doc=>({type:'resource_link',uri:doc.uri,name:doc.title,description:`${doc.kind} · docs/ux/${doc.id}`,mimeType:doc.kind==='journey'?'application/json':'text/markdown'}))});}catch(error){return {isError:true,content:[{type:'text',text:error.message}]};}
 });
-server.registerTool('workspace_snapshot',{title:'Load a UX Planner page',description:'Read only the selected workspace page, with navigation metadata.',inputSchema:workspaceViewSchema.extend({workspace}),annotations:{readOnlyHint:true,openWorldHint:false},_meta:{ui:{visibility:['app']}}},(args,extra)=>execute('workspace_snapshot',args,extra));
+server.registerTool('workspace_snapshot',{title:'Load a UX Planner page',description:'Read only the selected workspace page, with navigation metadata.',inputSchema:workspaceViewSchema.extend({workspace}),annotations:{readOnlyHint:true,openWorldHint:false},_meta:{ui:{visibility:['app']}}},(args,ctx)=>execute('workspace_snapshot',args,ctx));
 for(const resourceUri of [uri,'ui://ux-planner/workspace-v3'])registerAppResource(server,resourceUri,resourceUri,{},async()=>{
   const script=fs.readFileSync(new URL('../mcp/app.bundle.js',import.meta.url),'utf8'),css=fs.readFileSync(new URL('../mcp/app.bundle.css',import.meta.url),'utf8');
   const html=`<!doctype html><html lang="en" class="h-full antialiased"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>${css.replaceAll('</style','<\\/style')}</style></head><body class="min-h-full"><div id="root"><p role="status">Loading UX Planner…</p></div><script type="module">${script.replaceAll('</script','<\\/script')}</script></body></html>`;
   return {contents:[{uri:resourceUri,mimeType:RESOURCE_MIME_TYPE,text:html,_meta:{ui:{csp:{connectDomains:[],resourceDomains:['data:','blob:'],frameDomains:[]}},'openai/ui':{preferredDisplayMode:'fullscreen',availableDisplayModes:['inline','fullscreen']}}}]};
 });
-server.registerResource('ux-document',new ResourceTemplate('ux-planner://workspace/{workspace}/document/{+id}',{list:async()=>({resources:(await routing()).mode==='global'?[]:(await request('list_documents')).documents.map(doc=>({uri:doc.uri,name:doc.title,mimeType:doc.kind==='journey'?'application/json':'text/markdown'}))})}),{},async(resource,variables,extra)=>{
+server.registerResource('ux-document',new ResourceTemplate('ux-planner://workspace/{workspace}/document/{+id}',{list:async()=>({resources:(await routing()).mode==='global'?[]:(await request('list_documents')).documents.map(doc=>({uri:doc.uri,name:doc.title,mimeType:doc.kind==='journey'?'application/json':'text/markdown'}))})}),{},async(resource,variables,ctx)=>{
   const chosen=z.string().regex(/^[a-f0-9]{64}$/).parse(variables.workspace);
   const id=resource.href.split('/document/')[1].split('/').map(decodeURIComponent).join('/');
-  const {documents}=await request('read_documents',{workspace:chosen,ids:[id]},extra);return {contents:[{uri:resource.href,text:documents[0].content,mimeType:documents[0].kind==='journey'?'application/json':'text/markdown'}]};
+  const {documents}=await request('read_documents',{workspace:chosen,ids:[id]},ctx);return {contents:[{uri:resource.href,text:documents[0].content,mimeType:documents[0].kind==='journey'?'application/json':'text/markdown'}]};
 });
 await server.connect(new StdioServerTransport());
