@@ -1,1 +1,1 @@
-UX Planner: plan the user experience in the same repo as the code.
+UX Planner: plan the user experience in the same repo as the code. Below the headline, the app shows the Getting started journey board.
