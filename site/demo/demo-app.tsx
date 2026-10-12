@@ -39,7 +39,7 @@ function StandaloneBar() {
     <div className="demo-standalone">
       <NextLink href="/">← UX Planner</NextLink>
       <span>Demo workspace · {demoPersistenceNote}</span>
-      <a href={repositoryUrl}>Clone on GitHub</a>
+      <a href={repositoryUrl} target="_blank" rel="noopener">Clone on GitHub</a>
     </div>
   );
 }

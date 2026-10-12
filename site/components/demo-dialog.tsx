@@ -172,7 +172,7 @@ export function DemoProvider({ children }: { children: ReactNode }) {
               <span className="demo-tool-label">Reset demo</span>
               <span className="demo-tool-short">Reset</span>
             </button>
-            <a className="demo-tool demo-tool-primary" href={repositoryUrl}>
+            <a className="demo-tool demo-tool-primary" href={repositoryUrl} target="_blank" rel="noopener">
               <GitHubMark />
               <span className="demo-tool-label">Clone on GitHub</span>
             </a>

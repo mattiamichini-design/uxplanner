@@ -20,7 +20,7 @@ const noScriptReveal = '[data-reveal],[data-reveal]>*,.dial-ring,.dial-core{opac
 function Actions({ className, style }: { className: string; style?: CSSProperties }) {
   return (
     <div className={`actions ${className}`} style={style}>
-      <a className="button button-primary" href={repositoryUrl}>
+      <a className="button button-primary" href={repositoryUrl} target="_blank" rel="noopener">
         <span className="button-github"><GitHubMark /></span>
         Clone on GitHub
       </a>
@@ -53,7 +53,7 @@ function Hero() {
             {navigation.map(item => <li key={item.href}><a href={item.href}>{item.label}</a></li>)}
           </ul>
           <div className="nav-action">
-            <a className="pill" href={repositoryUrl}>
+            <a className="pill" href={repositoryUrl} target="_blank" rel="noopener">
               <GitHubMark />
               <span className="pill-wide">Clone on GitHub</span>
               <span className="pill-narrow">GitHub</span>
@@ -348,8 +348,8 @@ function Footer() {
         <span>A local app for personas, journeys, flows and stories.</span>
       </div>
       <ul className="footer-links">
-        <li><a href={repositoryUrl}>GitHub</a></li>
-        <li><a href={readmeUrl}>README</a></li>
+        <li><a href={repositoryUrl} target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href={readmeUrl} target="_blank" rel="noopener">README</a></li>
         <li><a href={authorUrl} target="_blank" rel="noopener">Made by Mattia</a></li>
       </ul>
     </footer>
