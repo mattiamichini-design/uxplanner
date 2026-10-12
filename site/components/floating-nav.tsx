@@ -131,7 +131,7 @@ export function FloatingNav() {
             <PlayIcon />
             <span>Demo</span>
           </DemoLink>
-          <a className="floating-github" href={repositoryUrl} aria-label="Clone on GitHub">
+          <a className="floating-github" href={repositoryUrl} target="_blank" rel="noopener" aria-label="Clone on GitHub">
             <GitHubMark />
             <span>GitHub</span>
           </a>

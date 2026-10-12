@@ -23,7 +23,7 @@ export default function DemoRootLayout({ children }: Readonly<{ children: React.
           <style>{'.demo-loading{display:none}'}</style>
           <p className="demo-noscript">
             The demo runs the real interface in your browser and needs JavaScript. <Link href="/">Back to UX Planner</Link> ·{' '}
-            <a href={repositoryUrl}>Clone on GitHub</a>
+            <a href={repositoryUrl} target="_blank" rel="noopener">Clone on GitHub</a>
           </p>
         </noscript>
         {children}
